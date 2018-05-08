@@ -4,6 +4,7 @@
     Author     : Rafa
 --%>
 
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -30,6 +31,29 @@ Iterator it = map.keySet().iterator();
 for (int i = 0; i < 18; i++) {
           out.println("<p>Clave: " + i + " -> Valor: " + map.get(i));
     }
+ ArrayList<String> lugar = new ArrayList();
+                                  lugar.add("Málaga");
+                                  lugar.add("Sevilla");
+                                  lugar.add("Granada");
+                                  lugar.add("Huelva");
+                                  lugar.add("Cadiz");
+                                  lugar.add("Almeria");
+                                  lugar.add("Jaen");
+                                  lugar.add("Barcelona");
+                                  lugar.add("Madrid");
+                                  lugar.add("Valencia");
+                                  lugar.add("Extremadura");
+                                  lugar.add("Pais Vasco");
+                                  lugar.add("Galicia");
+                                  lugar.add("Asturias");
+                                  lugar.add("Castilla La Mancha");
+                                  lugar.add("Castilla Leon");
+                                  lugar.add("Murcia");
+                                  lugar.add("La Rioja");
+                                  lugar.add("Salamanca");
+                                  lugar.add("Valladolid");
+                  
+out.println(lugar);
 
 
 
