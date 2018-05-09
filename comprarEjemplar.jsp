@@ -1,3 +1,8 @@
+<% 
+    if ((session.getAttribute("usuario") == null) || (session.getAttribute("usuario").equals(""))) {
+response.sendRedirect("login.jsp");
+} else {
+%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.sql.Statement"%>
@@ -209,3 +214,6 @@
 
                 </body>
                 </html>
+                <%
+                    }
+%>

@@ -5,6 +5,11 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% 
+    if ((session.getAttribute("usuario") == null) || (session.getAttribute("usuario").equals(""))) {
+response.sendRedirect("login.jsp");
+} else {
+%>
 <%
     int id = Integer.valueOf(request.getParameter("id"));
      Class.forName("com.mysql.jdbc.Driver");
@@ -193,3 +198,5 @@
 
                 </body>
                 </html>
+                <% }
+%>

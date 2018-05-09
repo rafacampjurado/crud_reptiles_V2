@@ -16,24 +16,17 @@
   
 Map<String,String>Login = new HashMap<String,String>();
 Login.put("luis","prog");
-Login.put("usuario", "usuario");
-Login.put("profesor", "profesor");
+Login.put("antonio", "sistemas");
+Login.put("eva", "base");
+Login.put("pilar", "lenguaje");
 
-public class encrip tar {
-public static String getMD5(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(input.getBytes());
-            BigInteger number = new BigInteger(1, messageDigest);
-            String hashtext = number.toString(16);
-
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-            return hashtext;
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+if(Login.containsKey(usuario)) {
+    if(Login.get(usuario).equals(contraseña)) {
+        session.setAttribute("usuario", usuario);
+        response.sendRedirect("index.jsp");
     }
+} else {
+     response.sendRedirect("login.jsp");
 }
+
 %>

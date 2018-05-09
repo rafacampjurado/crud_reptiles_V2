@@ -21,7 +21,10 @@
                     <li><a href="listEjemplares.jsp"><i class="fa fa-pencil-square"></i>Lista de ejemplares </a></li>
                     <li><a href="ventaEjemplar.jsp"><i class="fa fa-paypal"></i>Vender cría </a></li>
                     <li><a href="comprarEjemplar.jsp"><i class="fa fa-credit-card"></i>Comprar ejemplar </a></li>
+                    <li><a href="logout.jsp"><i class="fa fa-gear"></i>Cerrar sesión </a></li>
+                    
                 </ul>
+                <h3 style="text-align: justify">Usted está logeado<br> como <%  out.print(session.getAttribute("usuario"));  %></h3>
             </div>
 
 

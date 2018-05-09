@@ -4,15 +4,13 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%
-    String nombre = request.getParameter("nombre");
-    int codigoCria = Integer.valueOf(request.getParameter("codigoCria"));
-    String apellidoUno = request.getParameter("apellidoUno");
-    String apellidoDos = request.getParameter("apellidoDos");
-    String sexo = request.getParameter("sexo");
-    String dni = request.getParameter("dni");
+    int codigoCria = Integer.valueOf(request.getParameter("id"));
     String estado = "vendida";
+//    String nombreComprador = session.getAttribute("usuario");
+String codigoComprador = "";
 
     Class.forName("com.mysql.jdbc.Driver");
     Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/crud_reptiles", "root", "");
@@ -21,7 +19,11 @@
 
  String actualizar = "UPDATE crias SET estado='vendida' where codcria="+codigoCria+"";
 s.execute(actualizar);
-int insertar = s.executeUpdate("INSERT INTO comprador (dni,nombre,primerApellido,segundoApellido,sexo) VALUES ('" + dni + "','" + nombre + "','" + apellidoUno + "','" + apellidoDos + "','"+ sexo + "')");
+ResultSet select = s.executeQuery("SELECT codcomprador FROM comprador WHERE nombre='"+session.getAttribute("usuario")+"'");
+while(select.next()) {
+      codigoComprador = (select.getString("codcomprador"));
+        }
+int insertar = s.executeUpdate("INSERT INTO facturados (codcria,codcomprador) VALUES ("+codigoCria+""+codigoComprador+"");
     
  String redireccionar = "listEjemplares.jsp";
  response.sendRedirect(redireccionar);

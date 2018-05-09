@@ -3,6 +3,11 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<% 
+    if ((session.getAttribute("usuario") == null) || (session.getAttribute("usuario").equals(""))) {
+response.sendRedirect("login.jsp");
+} else {
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -87,7 +92,7 @@
 
                                                                     while (listado2.next()) {
                                                                         out.println(" </tr><td>" + listado2.getString("sexo") + "</td><td>" + listado2.getString("fase") + "</td><td>" + listado2.getString("fechna") + "</td>"
-                                                                                + "<td><a href='comprar.jsp?id=" + listado2.getString("codcria") + "'<button type='button' class='btn btn-primary'>Comprar</a></td> </tr>");
+                                                                                + "<td><a href='compraCria.jsp?id=" + listado2.getString("codcria") + "'<button type='button' class='btn btn-primary'>Comprar</a></td> </tr>");
                                                                     }
                                                                 %>
                                                             </tbody>
@@ -159,3 +164,6 @@
                 </body>
                 </html>
 
+                <%
+                    }
+%>

@@ -31,7 +31,7 @@ Iterator it = map.keySet().iterator();
 for (int i = 0; i < 18; i++) {
           out.println("<p>Clave: " + i + " -> Valor: " + map.get(i));
     }
- ArrayList<String> lugar = new ArrayList();
+ ArrayList<String,String> lugar = new ArrayList();
                                   lugar.add("Málaga");
                                   lugar.add("Sevilla");
                                   lugar.add("Granada");

@@ -3,6 +3,11 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<% 
+    if ((session.getAttribute("usuario") == null) || (session.getAttribute("usuario").equals(""))) {
+response.sendRedirect("login.jsp");
+} else {
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -208,3 +213,5 @@
                 </body>
                 </html>
 
+<% }
+%>
