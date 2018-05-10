@@ -40,7 +40,7 @@
      Class.forName("com.mysql.jdbc.Driver");
     Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/crud_reptiles", "root", "");
     Statement s = conexion.createStatement();
-    ResultSet select = s.executeQuery("SELECT nombre,sexo,fase,especie,fechana FROM geckos WHERE codgecko='"+id+"'");
+    ResultSet select = s.executeQuery("SELECT nombre,sexo,fase,especie,fechana FROM geckos WHERE codgecko=' "+id+" ' ");
     
         String nombre = "";
     String sexo= "";

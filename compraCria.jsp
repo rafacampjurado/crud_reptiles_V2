@@ -7,26 +7,37 @@
 <%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%
-    int codigoCria = Integer.valueOf(request.getParameter("id"));
-    String estado = "vendida";
-//    String nombreComprador = session.getAttribute("usuario");
-String codigoComprador = "";
-
-    Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.jdbc.Driver");
     Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/crud_reptiles", "root", "");
     Statement s = conexion.createStatement();
-    PreparedStatement pS = null;
-
- String actualizar = "UPDATE crias SET estado='vendida' where codcria="+codigoCria+"";
-s.execute(actualizar);
-ResultSet select = s.executeQuery("SELECT codcomprador FROM comprador WHERE nombre='"+session.getAttribute("usuario")+"'");
-while(select.next()) {
-      codigoComprador = (select.getString("codcomprador"));
-        }
-int insertar = s.executeUpdate("INSERT INTO facturados (codcria,codcomprador) VALUES ("+codigoCria+""+codigoComprador+"");
     
- String redireccionar = "listEjemplares.jsp";
- response.sendRedirect(redireccionar);
- conexion.close();
- 
+    int codigoCria = Integer.valueOf(request.getParameter("id"));
+    String estado = "vendida";
+//    String nombreComprador = String.valueOf(session.getAttribute("usuario"));
+    String nombreComprador = "luis";
+
+    String  codigoComprador = "";
+//        ResultSet selectNomb = s.executeQuery("SELECT nombre FROM comprador WHERE nombre='  " +nombreComprador+ " ' " );
+        ResultSet selectNomb = s.executeQuery("SELECT primerApellido  FROM comprador WHERE nombre=' luis ' " );
+      
+        while (selectNomb.next()) {
+       codigoComprador = selectNomb.getString("primerApellido");
+//        out.print("a");
+    }
+        out.print(codigoComprador);
+
+//        codigoComprador = Integer.parseInt(codigoComprador);
+
+//    String  actualizar = ("UPDATE crias SET estado='vendida' where codcria=' "+codigoCria+" ' ");
+//    s.execute(actualizar);
+    
+
+  
+    
+//    int insertar = s.executeUpdate("INSERT INTO facturados (codcria,codcomprador) VALUES (' " + codigoCria + " ' , ' " + codigoComprador + " ') ");
+
+//    String redireccionar = "listEjemplares.jsp";
+//    response.sendRedirect(redireccionar);
+    conexion.close();
+
 %>
