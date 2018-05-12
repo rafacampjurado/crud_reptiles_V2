@@ -16,15 +16,20 @@
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
                 <h3>Barra de navegación</h3>
+                                <%
+                    String nombre = String.valueOf(session.getAttribute("usuario"));
+                    %>
+                    <p><h3 style="text-align: left">Usted está logeado<br> como <%  out.print(nombre);  %></h3></p>
                 <ul class="nav side-menu">
                     <li><a href="index.jsp"><i class="fa fa-home"></i>Inicio </a></li>
                     <li><a href="listEjemplares.jsp"><i class="fa fa-pencil-square"></i>Lista de ejemplares </a></li>
-                    <li><a href="ventaEjemplar.jsp"><i class="fa fa-paypal"></i>Vender cría </a></li>
+                    <li><a href="ventaEjemplar.jsp"><i class="fa fa-paypal"></i>Venta de crías </a></li>
                     <li><a href="comprarEjemplar.jsp"><i class="fa fa-credit-card"></i>Comprar ejemplar </a></li>
+                    <li><a href="facturas.jsp"><i class="fa fa-file"></i>Facturas </a></li>
                     <li><a href="logout.jsp"><i class="fa fa-gear"></i>Cerrar sesión </a></li>
                     
                 </ul>
-                <h3 style="text-align: justify">Usted está logeado<br> como <%  out.print(session.getAttribute("usuario"));  %></h3>
+
             </div>
 
 

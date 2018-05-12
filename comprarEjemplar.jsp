@@ -1,7 +1,26 @@
-<% 
+<%@page import="java.util.ArrayList"%>
+<%
     if ((session.getAttribute("usuario") == null) || (session.getAttribute("usuario").equals(""))) {
-response.sendRedirect("login.jsp");
-} else {
+        response.sendRedirect("login.jsp");
+    } else {
+
+        ArrayList fases = new ArrayList();
+
+        fases.add("bellAlbino");
+        fases.add("rainwater");
+        fases.add("tremperAlbino");
+        fases.add("boldStriped");
+        fases.add("rainingRedStripe");
+        fases.add("redStriped");
+        fases.add("reverseWyY");
+        fases.add("aptor");
+        fases.add("bandit");
+        fases.add("blizzard");
+        fases.add("diabloBlanco");
+        fases.add("dreamsicle");
+        fases.add("raptor");
+        fases.add("macksnow");
+        fases.add("shtc");
 %>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
@@ -94,27 +113,14 @@ response.sendRedirect("login.jsp");
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fase">Fase <span class="required">*</span></label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                                 <select name="fase" class="select2_group form-control">
-                                                                    <optgroup label="Albino">
-                                                                        <option value="bellAlbino">Bell Albino</option>
-                                                                        <option value="rainwater">Rainwater</option>
-                                                                        <option value="tremperAlbino">Tremper Albino </option>
-                                                                    </optgroup>
-                                                                    <optgroup label="Striped">
-                                                                        <option value="boldStriped">Bold striped</option>
-                                                                        <option value="rainingRedStripe">Raining Red Stripe</option>
-                                                                        <option value="redStriped">Red Striped</option>
-                                                                        <option value="reverseWyY">Reverse Striped White and Yellow Sykes Emerine</option>
-                                                                    </optgroup>
-                                                                    <optgroup label="Fase estándar">
-                                                                        <option value="aptor">Aptor</option>
-                                                                        <option value="bandit">Bandit  </option>
-                                                                        <option value="blizzard">Blizzard</option>
-                                                                        <option value="diabloBlanco">Diablo Blanco</option>
-                                                                        <option value="dreamsicle">Dreamsicle</option>
-                                                                        <option value="raptor">Raptor</option>
-                                                                        <option value="macksnow">Macksnow</option>
-                                                                        <option value="shtc">Super Hypo Tangerine Carrot Tail</option>
-                                                                    </optgroup>
+                                                                    <% 
+                                                                        for (int i = 0; i < fases.size(); i++) {
+                                                                            String fase = (String)fases.get(i);
+                                                                                %>
+                                                                                <option value="<%= fase %>"><%= fase %></option>
+                                                                           <% }%>
+                                                                        
+                                                                        
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -216,4 +222,4 @@ response.sendRedirect("login.jsp");
                 </html>
                 <%
                     }
-%>
+                %>

@@ -3,10 +3,10 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
-<% 
+<%
     if ((session.getAttribute("usuario") == null) || (session.getAttribute("usuario").equals(""))) {
-response.sendRedirect("login.jsp");
-} else {
+        response.sendRedirect("login.jsp");
+    } else {
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@ response.sendRedirect("login.jsp");
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="imagenes/favicon.ico" type="image/ico" />
 
-        <title>REPTILES | venta </title>
+        <title>REPTILES | listado </title>
 
         <!-- Bootstrap -->
         <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -42,31 +42,6 @@ response.sendRedirect("login.jsp");
             Class.forName("com.mysql.jdbc.Driver");
             Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/crud_reptiles", "root", "");
             Statement s = conexion.createStatement();
-                String nombreComprador = (String)session.getAttribute("usuario");
-                int codigo = 0;
-                if(nombreComprador.equals("luis")) {
-                    codigo = 10;
-                } else if (nombreComprador.equals("antonio")) {
-                    codigo = 11;
-                } else if (nombreComprador.equals("eva")) {
-                    codigo = 12;
-                } else if (nombreComprador.equals("pilar")) {
-                    codigo = 13;
-                }
-//                switch(nombreComprador) {
-//                    case "luis":
-//                         codigo = 10;
-//                        break;
-//                    case "antonio":
-//                         codigo = 11;
-//                        break;
-//                    case "eva":
-//                        codigo = 12;
-//                        break;
-//                    case "pilar":
-//                        codigo = 13;
-//                        break;
-//                }
 
         %>
     </head>
@@ -92,7 +67,7 @@ response.sendRedirect("login.jsp");
                     <div class="">
                         <div class="page-title">
                             <div class="title_left">
-                                <h3>Venta de crías </h3>
+                                <h3>Listado de ejemplares </h3>
                             </div>
                             <div class="clearfix">
 
@@ -101,7 +76,7 @@ response.sendRedirect("login.jsp");
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="x_panel">
                                         <div class="x_title">
-                                            <h3>Listado de crías disponibles</h3>
+                                            <h3>Listado ejemplares jóvenes</h3>
                                         </div>
                                         <div class="x_content">
                                             <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
@@ -109,17 +84,24 @@ response.sendRedirect("login.jsp");
                                                     <div class="col-sm-12">
                                                         <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
                                                             <thead>
-                                                            <th>Sexo</th>
-                                                            <th>Fase</th>
-                                                            <th>Fecha de nacimiento</th> 
+                                                            <th>Fecha</th>
+                                                            <th>Propietario</th>
+                                                            <th>Especie</th> 
+                                                            <th>Fase</th> 
+                                                            </thead>
                                                             <tbody>
-                                                                <%                                                                    ResultSet listado2 = s.executeQuery("SELECT * FROM crias WHERE estado='enVenta'");
+                                                                <%
+                                                                    ResultSet listado2 = s.executeQuery("select fecha, comprador.nombre as'propietario', crias.especie, crias.fase from facturados inner join crias on crias.codcria=facturados.codcria inner join comprador on comprador.codcomprador=facturados.codcomprador");
 
                                                                     while (listado2.next()) {
-                                                                        out.println(" </tr><td>" + listado2.getString("sexo") + "</td><td>" + listado2.getString("fase") + "</td><td>" + listado2.getString("fechna") + "</td>"
-                                                                                + "<td><a href='compraCria.jsp?id=" + listado2.getString("codcria") + "&codcompra="+codigo+"'<button type='button' class='btn btn-primary'>Comprar</a></td> </tr>");
+                                                                        out.println(" </tr><td>" + listado2.getString("fecha") + "</td><td>" + listado2.getString("propietario") + "</td><td>" + listado2.getString("crias.especie") + "</td><td>" + listado2.getString("crias.fase") + "</td> </tr></tr>");
                                                                     }
+
+                                                                    conexion.close();
                                                                 %>
+
+
+
                                                             </tbody>
                                                         </table>
                                                     </div>
@@ -136,7 +118,6 @@ response.sendRedirect("login.jsp");
                                     <br />
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -189,6 +170,5 @@ response.sendRedirect("login.jsp");
                 </body>
                 </html>
 
-                <%
-                    }
-%>
+                <% }
+                %>

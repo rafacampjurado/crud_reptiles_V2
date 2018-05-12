@@ -12,32 +12,18 @@
     Statement s = conexion.createStatement();
     
     int codigoCria = Integer.valueOf(request.getParameter("id"));
+    int codigoComprador = Integer.valueOf(request.getParameter("codcompra"));
+
     String estado = "vendida";
-//    String nombreComprador = String.valueOf(session.getAttribute("usuario"));
-    String nombreComprador = "luis";
 
-    String  codigoComprador = "";
-//        ResultSet selectNomb = s.executeQuery("SELECT nombre FROM comprador WHERE nombre='  " +nombreComprador+ " ' " );
-        ResultSet selectNomb = s.executeQuery("SELECT primerApellido  FROM comprador WHERE nombre=' luis ' " );
-      
-        while (selectNomb.next()) {
-       codigoComprador = selectNomb.getString("primerApellido");
-//        out.print("a");
-    }
-        out.print(codigoComprador);
 
-//        codigoComprador = Integer.parseInt(codigoComprador);
+    String  actualizar = ("UPDATE crias SET estado='vendida' where codcria=' "+codigoCria+" ' ");
 
-//    String  actualizar = ("UPDATE crias SET estado='vendida' where codcria=' "+codigoCria+" ' ");
-//    s.execute(actualizar);
     
+    int insertar = s.executeUpdate("INSERT INTO facturados (codcria,codcomprador) VALUES (' " + codigoCria + " ' , ' " + codigoComprador + " ') ");
 
-  
-    
-//    int insertar = s.executeUpdate("INSERT INTO facturados (codcria,codcomprador) VALUES (' " + codigoCria + " ' , ' " + codigoComprador + " ') ");
-
-//    String redireccionar = "listEjemplares.jsp";
-//    response.sendRedirect(redireccionar);
+    String redireccionar = "listEjemplares.jsp";
+    response.sendRedirect(redireccionar);
     conexion.close();
 
 %>
