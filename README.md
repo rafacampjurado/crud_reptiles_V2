@@ -35,5 +35,5 @@ El trabajo constará de una base de datos con 4 tablas :
 ### Hashmap y Arralist
 	- Hashmap implementado en el login de la página web.
 	- Arraylist implementado en "ComprarEjemplar".
-<img src="imagenes/Arraylist.jpg" width="700px">
-<img src="imagenes/Hashmap.jpg" width="700px">
+<img src="imagenes/arraylist.jpg" width="700px">
+<img src="imagenes/hashmap.jpg" width="700px">
