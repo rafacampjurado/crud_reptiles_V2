@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-03-2018 a las 18:50:41
+-- Tiempo de generación: 12-05-2018 a las 19:10:56
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.3
 
@@ -42,9 +42,10 @@ CREATE TABLE `comprador` (
 --
 
 INSERT INTO `comprador` (`codcomprador`, `nombre`, `primerApellido`, `segundoApellido`, `dni`, `sexo`) VALUES
-(5, 'LucÃ­a', 'Gavilan', 'Acencio', '94921453A', 'mujer'),
-(6, 'Marcos', 'Moya', 'Samora', '41064285B', 'hombre'),
-(7, 'JosÃ©', 'MartÃ­n', 'PÃ©rez', '12345678B', 'hombre');
+(10, 'luis', 'Sánchez', '', '12345678A', 'Hombre'),
+(11, 'Antonio', 'Martín', '', '11345678A', 'Hombre'),
+(12, 'Eva', 'Perales', '', '11145678A', 'Mujer'),
+(13, 'Pilar', 'Gonzalez', '', '11115678A', 'Mujer');
 
 -- --------------------------------------------------------
 
@@ -57,27 +58,50 @@ CREATE TABLE `crias` (
   `fase` text NOT NULL,
   `fechna` date NOT NULL,
   `estado` text NOT NULL,
-  `sexo` text NOT NULL
+  `sexo` text NOT NULL,
+  `especie` varchar(255) DEFAULT 'macularius'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `crias`
 --
 
-INSERT INTO `crias` (`codcria`, `fase`, `fechna`, `estado`, `sexo`) VALUES
-(1, 'tangerine', '2018-03-20', 'vendida', 'macho'),
-(2, 'stripe', '2018-02-16', 'vendida', 'hembra'),
-(3, 'raptor', '2018-02-16', 'vendida', 'hembra'),
-(4, 'nominal', '2018-02-17', 'vendida', 'macho'),
-(5, 'tangerine', '2018-02-17', 'vendida', 'macho'),
-(6, 'raptor', '2018-02-17', 'vendida', 'hembra'),
-(7, 'stripe', '2018-02-17', 'enVenta', 'macho'),
-(8, 'nominal', '2018-02-17', 'enVenta', 'hembra'),
-(9, 'nominal', '2018-02-17', 'enVenta', 'hembra'),
-(10, 'stripe', '2018-02-17', 'enVenta', 'hembra'),
-(11, 'raptor', '2018-02-17', 'enVenta', 'hembra'),
-(12, 'stripe', '2018-02-17', 'enVenta', 'macho'),
-(13, 'raptor', '2018-02-21', 'enVenta', 'macho');
+INSERT INTO `crias` (`codcria`, `fase`, `fechna`, `estado`, `sexo`, `especie`) VALUES
+(1, 'tangerine', '2018-03-20', 'vendida', 'macho', 'macularius'),
+(2, 'stripe', '2018-02-16', 'vendida', 'hembra', 'macularius'),
+(3, 'raptor', '2018-02-16', 'vendida', 'hembra', 'macularius'),
+(4, 'nominal', '2018-02-17', 'vendida', 'macho', 'macularius'),
+(5, 'tangerine', '2018-02-17', 'vendida', 'macho', 'macularius'),
+(6, 'raptor', '2018-02-17', 'vendida', 'hembra', 'macularius'),
+(7, 'stripe', '2018-02-17', 'enVenta', 'macho', 'macularius'),
+(8, 'nominal', '2018-02-17', 'enVenta', 'hembra', 'macularius'),
+(9, 'nominal', '2018-02-17', 'enVenta', 'hembra', 'macularius'),
+(10, 'stripe', '2018-02-17', 'enVenta', 'hembra', 'macularius'),
+(11, 'raptor', '2018-02-17', 'enVenta', 'hembra', 'macularius'),
+(12, 'stripe', '2018-02-17', 'enVenta', 'macho', 'macularius'),
+(13, 'raptor', '2018-02-21', 'enVenta', 'macho', 'macularius');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `facturados`
+--
+
+CREATE TABLE `facturados` (
+  `codfact` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `codcria` int(11) NOT NULL,
+  `codcomprador` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `facturados`
+--
+
+INSERT INTO `facturados` (`codfact`, `fecha`, `codcria`, `codcomprador`) VALUES
+(9, '2018-05-12 16:17:46', 7, 12),
+(10, '2018-05-12 16:38:24', 7, 12),
+(11, '2018-05-12 16:38:36', 9, 12);
 
 -- --------------------------------------------------------
 
@@ -99,7 +123,7 @@ CREATE TABLE `geckos` (
 --
 
 INSERT INTO `geckos` (`codgecko`, `especie`, `fase`, `sexo`, `fechana`, `nombre`) VALUES
-(1, 'macularius', 'boldStriped(actualmente)', 'macho', '2015-06-10', 'lala'),
+(1, 'macularius', 'boldStriped', 'macho', '2015-06-10', 'lala'),
 (2, 'eublepharis', 'raptor', 'macho', '2015-02-03', 'Luffy'),
 (3, 'eublepharis', 'super raptor', 'hembra', '2017-04-20', 'Lucy'),
 (4, 'macularius', 'shtc', 'hembra', '2015-05-19', 'Chell'),
@@ -122,6 +146,14 @@ ALTER TABLE `crias`
   ADD PRIMARY KEY (`codcria`);
 
 --
+-- Indices de la tabla `facturados`
+--
+ALTER TABLE `facturados`
+  ADD PRIMARY KEY (`codfact`),
+  ADD KEY `facturados_ibfk_1` (`codcria`),
+  ADD KEY `facturados_ibfk_2` (`codcomprador`);
+
+--
 -- Indices de la tabla `geckos`
 --
 ALTER TABLE `geckos`
@@ -135,13 +167,19 @@ ALTER TABLE `geckos`
 -- AUTO_INCREMENT de la tabla `comprador`
 --
 ALTER TABLE `comprador`
-  MODIFY `codcomprador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `codcomprador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `crias`
 --
 ALTER TABLE `crias`
   MODIFY `codcria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `facturados`
+--
+ALTER TABLE `facturados`
+  MODIFY `codfact` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `geckos`
