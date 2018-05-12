@@ -21,6 +21,12 @@
         fases.add("raptor");
         fases.add("macksnow");
         fases.add("shtc");
+
+        ArrayList raza = new ArrayList();
+        raza.add("angra");
+        raza.add("fuscus");
+        raza.add("hardwicki");
+        raza.add("macularius");
 %>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
@@ -113,14 +119,14 @@
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fase">Fase <span class="required">*</span></label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                                 <select name="fase" class="select2_group form-control">
-                                                                    <% 
+                                                                    <%
                                                                         for (int i = 0; i < fases.size(); i++) {
-                                                                            String fase = (String)fases.get(i);
-                                                                                %>
-                                                                                <option value="<%= fase %>"><%= fase %></option>
-                                                                           <% }%>
-                                                                        
-                                                                        
+                                                                            String fase = (String) fases.get(i);
+                                                                    %>
+                                                                    <option value="<%= fase%>"><%= fase%></option>
+                                                                    <% }%>
+
+
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -128,11 +134,12 @@
                                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="fase">Raza <span class="required">*</span></label>
                                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                                 <select name="raza"class="select2_group form-control">
-
-                                                                    <option value="angra">Eublepharis Angramainyu</option>
-                                                                    <option value="fuscus">Eublepharis Fuscus</option>
-                                                                    <option value="hardwicki">Eublepharis Hardwickii</option>
-                                                                    <option value="macularius">Eublepharis Macularius</option>
+                                                                    <%
+                                                                        for (int i = 0; i < raza.size(); i++) {
+                                                                            String nomRaza = (String) raza.get(i);
+                                                                    %>
+                                                                    <option value="<%= nomRaza%>"><%= nomRaza%></option>
+                                                                    <% }%>
 
                                                                 </select>
                                                             </div>

@@ -23,7 +23,7 @@
                 <ul class="nav side-menu">
                     <li><a href="index.jsp"><i class="fa fa-home"></i>Inicio </a></li>
                     <li><a href="listEjemplares.jsp"><i class="fa fa-pencil-square"></i>Lista de ejemplares </a></li>
-                    <li><a href="ventaEjemplar.jsp"><i class="fa fa-paypal"></i>Venta de crías </a></li>
+                    <li><a href="ventaEjemplar.jsp"><i class="fa fa-paypal"></i>Venta de crías</a></li>
                     <li><a href="comprarEjemplar.jsp"><i class="fa fa-credit-card"></i>Comprar ejemplar </a></li>
                     <li><a href="facturas.jsp"><i class="fa fa-file"></i>Facturas </a></li>
                     <li><a href="logout.jsp"><i class="fa fa-gear"></i>Cerrar sesión </a></li>
